@@ -10,13 +10,21 @@ const CardsWrapper = styled.div`
     flex-wrap: wrap;
     gap: 2em;
     margin-bottom: 1em;
-`
+`;
+const Result = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+    color: #A9A9C4;
+    font-family: 'Nunito';
+    font-size: 14px;
+`;
 
 const Home = () => {
     return (
             <div>
                 <Filter />
-                <div  className="d-flex justify-content-center">2946 results</div>
+                <Result>2946 results</Result>
                 <CardsWrapper>
                     <Card />
                     <Card />
