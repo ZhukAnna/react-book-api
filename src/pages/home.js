@@ -1,18 +1,31 @@
 import React from 'react';
+import styled from 'styled-components';
 import Filter from '../components/Filter';
 import Card from '../components/Card';
 
-const Search = () => {
+const CardsWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2em;
+    margin-bottom: 1em;
+`
+
+const Home = () => {
     return (
             <div>
                 <Filter />
                 <div  className="d-flex justify-content-center">2946 results</div>
-                <div className="d-flex justify-content-between flex-wrap">
+                <CardsWrapper>
                     <Card />
                     <Card />
                     <Card />
                     <Card />
-                </div>
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                </CardsWrapper>
                 <div  className="d-flex justify-content-center">
                     <button className="btn btn-outline-secondary">Load More</button>
                 </div>
@@ -20,4 +33,4 @@ const Search = () => {
     )
 }
 
-export default Search;
+export default Home;
