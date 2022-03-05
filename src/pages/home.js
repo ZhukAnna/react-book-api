@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Filter from '../components/Filter';
 import Card from '../components/Card';
+import Button from '../components/Button';
 
 const CardsWrapper = styled.div`
     display: flex;
@@ -27,7 +28,7 @@ const Home = () => {
                     <Card />
                 </CardsWrapper>
                 <div  className="d-flex justify-content-center">
-                    <button className="btn btn-outline-secondary">Load More</button>
+                    <Button>Load More</Button>
                 </div>
             </div>
     )
