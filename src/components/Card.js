@@ -1,16 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Card.css';
 
-function Card() {
+function Card({ id, img, title, authors, category}) {
+
+    if (!img) img=`https://picsum.photos/seed/${id}/180/240?grayscale&blur=8`;
+    if (category) category = category.slice(0,1);
+
     return (
-        <div className="card">
-            <img src="https://picsum.photos/300/400" className="card-img-top card_img" alt="..."></img>
+        <Link to={`/Book/${id}`} className="card card--link" data-id={id}>
+            <img src={img} className="card-img-top card_img" alt={title}></img>
             <div className="card-body">
-                <h5 className="card_title">Название книги</h5>
-                <h6 className="card_subtitle">название категории</h6>
-                <p className="card_text">Автор</p>
+                <h5 className="card_title">{title}</h5>
+                <h6 className="card_subtitle">{category}</h6>
+                <p className="card_text">{authors?.join(', ')}</p>
             </div>
-        </div>
+        </Link>
     )
 }
 

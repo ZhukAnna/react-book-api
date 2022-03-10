@@ -6,12 +6,12 @@ import Header from './components/Header.js';
 import Home from './pages/home.js';
 import Book from './pages/book.js';
 
-function App() {
+export default function App() {
   return (
     <Routes>
       <Route path={'/'} element={<Layout/>}>
         <Route index element={<Home/>}/>
-        <Route path={'book'} element={<Book/>}/>
+        <Route path={`book/:id`} element={<Book/>}/>
       </Route>
     </Routes>
   );
@@ -27,5 +27,3 @@ function Layout() {
     </Container>
   )
 }
-
-export default App;
