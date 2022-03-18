@@ -3,6 +3,7 @@
   flex: 0 1 auto;
   justify-content: space-between;
   font-family: "Nunito";
+  border: none !important;
 }
 @media (min-width: 480px) {
   .card {
@@ -25,7 +26,6 @@
   }
 }
 .card--link {
-  border: none !important;
   text-decoration: none;
   cursor: pointer;
 }
@@ -44,7 +44,7 @@
   font-weight: bold;
   font-size: 18px;
 }
-.card:hover .card_title {
+.card--link:hover .card_title {
   color: rgb(14, 148, 150);
 }
 .card_subtitle {
