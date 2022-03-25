@@ -2,18 +2,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import Filter from "../components/Filter";
-import Card from "../components/Card";
+import CardsList from "../components/CardsList";
 import Button from "../components/Button";
 import getBooks from "../utils/googleBooksAPI.js";
 import Loader from "../assets/loader";
 
-const CardsWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2em;
-  margin-bottom: 1em;
-`;
 const Result = styled.div`
   display: flex;
   justify-content: center;
@@ -47,27 +40,6 @@ const Home = (props) => {
       });
   }, []);
 
-  const cards = data?.items.map((book) => {
-    const id = book.id;
-    const image =
-      book.volumeInfo.imageLinks?.thumbnail ||
-      "https://via.placeholder.com/180x250/566273/FFFFFF?text=no%20image";
-    const title = book.volumeInfo.title;
-    const authors = book.volumeInfo.authors;
-    const category = book.volumeInfo.categories;
-
-    return (
-      <Card
-        key={id}
-        id={id}
-        img={image}
-        title={title}
-        authors={authors}
-        category={category}
-      />
-    );
-  });
-
   const handlerClick = () => {
     console.log("click");
   };
@@ -80,7 +52,7 @@ const Home = (props) => {
       {data && (
         <>
           <Result>{data.totalItems} results</Result>
-          <CardsWrapper>{cards}</CardsWrapper>
+          <CardsList data={data}/>
           <div className="d-flex justify-content-center">
             <Button type="button" onClick={handlerClick}>
               Load More
