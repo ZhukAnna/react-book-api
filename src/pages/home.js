@@ -39,18 +39,22 @@ const Home = (props) => {
       .then((data) => {
         setData(data);
         setLoading(false);
+        setError(null);
       })
       .catch((err) => {
         setError(err.message);
+        setLoading(false);
       });
   }, []);
 
   const cards = data?.items.map((book) => {
     const id = book.id;
-    const image = book.volumeInfo.imageLinks?.thumbnail;
-    const title = book.volumeInfo?.title;
-    const authors = book.volumeInfo?.authors;
-    const category = book.volumeInfo?.categories;
+    const image =
+      book.volumeInfo.imageLinks?.thumbnail ||
+      "https://via.placeholder.com/180x250/566273/FFFFFF?text=no%20image";
+    const title = book.volumeInfo.title;
+    const authors = book.volumeInfo.authors;
+    const category = book.volumeInfo.categories;
 
     return (
       <Card
@@ -64,14 +68,6 @@ const Home = (props) => {
     );
   });
 
-  const loader = () => {
-    return (
-      <div className="d-flex justify-content-center">
-        <Loader />
-      </div>
-    );
-  };
-
   const handlerClick = () => {
     console.log("click");
   };
@@ -80,16 +76,18 @@ const Home = (props) => {
     <div>
       <Filter />
       {error && <div> {error} </div>}
-      {loading && loader()}
-      {data &&  <>
-      <Result>{data.totalItems} results</Result>
-      <CardsWrapper>{cards}</CardsWrapper>
-      <div className="d-flex justify-content-center">
-        <Button type="button" onClick={handlerClick}>
-          Load More
-        </Button>
-      </div>
-      </>}
+      {loading && <Loader />}
+      {data && (
+        <>
+          <Result>{data.totalItems} results</Result>
+          <CardsWrapper>{cards}</CardsWrapper>
+          <div className="d-flex justify-content-center">
+            <Button type="button" onClick={handlerClick}>
+              Load More
+            </Button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
