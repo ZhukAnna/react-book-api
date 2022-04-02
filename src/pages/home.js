@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
-
+import context from "../Context.js";
 import Filter from "../components/Filter";
 import CardsList from "../components/CardsList";
 import Button from "../components/Button";
@@ -17,18 +17,14 @@ const Result = styled.div`
 `;
 
 const Home = (props) => {
+  const search = useContext(context);
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [startId, setstartId] = useState(0);
 
-  useEffect(() => {
-    getBooks()
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Ooops! Couldn't fetch the data");
-        }
-        return res.json();
-      })
+  const fetchData = (req) => {
+    getBooks(req)
       .then((data) => {
         setData(data);
         setLoading(false);
@@ -38,10 +34,14 @@ const Home = (props) => {
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  };
+
+  useEffect(() => {
+    fetchData(search);
+  }, [search]);
 
   const handlerClick = () => {
-    console.log("click");
+    setstartId(startId + 30);
   };
 
   return (
@@ -52,7 +52,7 @@ const Home = (props) => {
       {data && (
         <>
           <Result>{data.totalItems} results</Result>
-          <CardsList data={data}/>
+          <CardsList data={data} />
           <div className="d-flex justify-content-center">
             <Button type="button" onClick={handlerClick}>
               Load More
