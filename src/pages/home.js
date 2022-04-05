@@ -22,8 +22,11 @@ const Home = (props) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [startId, setstartId] = useState(0);
+  const [category, setCategory] = useState("all");
+  const [sorting, setSorting] = useState("relevance");
 
   const fetchData = (req) => {
+    setLoading(true);
     getBooks(req)
       .then((data) => {
         setData(data);
@@ -44,9 +47,18 @@ const Home = (props) => {
     setstartId(startId + 30);
   };
 
+  const onChangeCategory = (e) => setCategory(e.target.value);
+
+  const onChangeSorting = (e) => setSorting(e.target.value);
+
   return (
     <div>
-      <Filter />
+      <Filter
+        category={category}
+        sorting={sorting}
+        onChangeCategory={onChangeCategory}
+        onChangeSorting={onChangeSorting}
+      />
       {error && <div> {error} </div>}
       {loading && <Loader />}
       {data && (

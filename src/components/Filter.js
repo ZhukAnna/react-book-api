@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Filter.css";
 
-function Filter() {
-  const [category, setCategory] = useState("all");
-  const [sorting, setSorting] = useState("relevance");
+export default function Filter(props) {
+  const { category, sorting, onChangeCategory, onChangeSorting } = props;
 
   return (
     <div className="filter">
@@ -16,7 +15,7 @@ function Filter() {
           aria-label="category"
           id="category"
           value={category}
-          onChange={(event) => setCategory(event.target.value)}
+          onChange={(e) => onChangeCategory(e)}
         >
           <option value="all">all</option>
           <option value="art">art</option>
@@ -37,7 +36,7 @@ function Filter() {
           aria-label="sort"
           id="sort"
           value={sorting}
-          onChange={(event) => setSorting(event.target.value)}
+          onChange={(e) => onChangeSorting(e)}
         >
           <option value="relevance">relevance</option>
           <option value="newest">newest</option>
@@ -46,5 +45,3 @@ function Filter() {
     </div>
   );
 }
-
-export default Filter;
