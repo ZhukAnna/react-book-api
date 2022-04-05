@@ -25,9 +25,9 @@ const Home = (props) => {
   const [category, setCategory] = useState("all");
   const [sorting, setSorting] = useState("relevance");
 
-  const fetchData = (req) => {
+  const fetchData = (req, sort) => {
     setLoading(true);
-    getBooks(req)
+    getBooks(req, sort)
       .then((data) => {
         setData(data);
         setLoading(false);
@@ -40,8 +40,8 @@ const Home = (props) => {
   };
 
   useEffect(() => {
-    fetchData(search);
-  }, [search]);
+    fetchData(search, sorting);
+  }, [search, sorting]);
 
   const handlerClick = () => {
     setstartId(startId + 30);
