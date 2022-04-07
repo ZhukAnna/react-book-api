@@ -1,20 +1,13 @@
-import React, { useEffect, useState, useContext } from "react";
-import styled from "styled-components";
-import context from "../Context.js";
-import Filter from "../components/Filter";
-import CardsList from "../components/CardsList";
-import Button from "../components/Button";
-import getBooks from "../utils/googleBooksAPI.js";
-import Loader from "../assets/loader";
+import React, { useEffect, useState, useContext } from 'react';
 
-const Result = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1em;
-  color: #a9a9c4;
-  font-family: "Nunito";
-  font-size: 14px;
-`;
+import context from '../Context.js';
+import Filter from '../components/Filter';
+import CardsList from '../components/CardsList';
+import Button from '../components/Button';
+import getBooks from '../utils/googleBooksAPI.js';
+import Loader from '../assets/loader';
+import Result from '../components/Result';
+
 
 const Home = (props) => {
   const search = useContext(context);
@@ -22,8 +15,8 @@ const Home = (props) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [startId, setstartId] = useState(0);
-  const [category, setCategory] = useState("all");
-  const [sorting, setSorting] = useState("relevance");
+  const [category, setCategory] = useState('all');
+  const [sorting, setSorting] = useState('relevance');
 
   const fetchData = (req, sort) => {
     setLoading(true);
@@ -47,7 +40,18 @@ const Home = (props) => {
     setstartId(startId + 30);
   };
 
-  const onChangeCategory = (e) => setCategory(e.target.value);
+  const onChangeCategory = (e) => {
+    setCategory(e.target.value);
+/*     console.log(data);
+    console.log(category);
+    if (category !== 'all')
+      setData({
+        ...data,
+        items: data.items.filter((book) =>
+          book.volumeInfo.categories?.map((i) => i.toLowerCase()).includes(category)
+        ),
+      }); */
+  };
 
   const onChangeSorting = (e) => setSorting(e.target.value);
 
@@ -63,8 +67,8 @@ const Home = (props) => {
       {loading && <Loader />}
       {data && (
         <>
-          <Result>{data.totalItems} results</Result>
-          <CardsList data={data} />
+          <Result>{data.totalItems || 0} results</Result>
+          <CardsList data={data.items} />
           <div className="d-flex justify-content-center">
             <Button type="button" onClick={handlerClick}>
               Load More
