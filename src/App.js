@@ -19,7 +19,7 @@ export default function App() {
 }
 
 function Layout() {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("react");
   const [value, setValue] = useState("");
 
   const onChangeValue = (e) => setValue(e.target.value);
