@@ -1,20 +1,29 @@
-import React from "react";
-import "./Header.css";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { searchAction } from '../store/actions.js';
+import './Header.css';
 
 export default function Header(props) {
-  const { onSubmit, value, onChangeValue } = props;
+  const [value, setValue] = useState('');
+  const dispatch = useDispatch();
 
   return (
     <div className="header">
       <div className="header_logo-wrapper">
         <h1 className="header_title">Books API App</h1>
       </div>
-      <form className="header_search" onSubmit={onSubmit}>
+      <form
+        className="header_search"
+        onSubmit={async (event) => {
+          event.preventDefault();
+          dispatch(searchAction(value));
+        }}
+      >
         <input
           className="header_search-input"
           placeholder="Search"
           value={value}
-          onChange={(e) => onChangeValue(e)}
+          onChange={(e) => setValue(e.target.value)}
         ></input>
         <button type="submit" className="header_search-btn">
           <svg width="23" height="22" viewBox="0 0 23 22" fill="none">

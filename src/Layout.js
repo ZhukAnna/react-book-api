@@ -1,26 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Header from './components/Header.js';
-import context from './Context.js';
+import { Provider } from 'react-redux';
+import store from './store';
 
 export default function Layout() {
-  const [search, setSearch] = useState('react');
-  const [value, setValue] = useState('');
-
-  const onChangeValue = (e) => setValue(e.target.value);
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    setSearch(value);
-  };
-
   return (
-    <context.Provider value={search}>
+    <Provider store={store}>
       <Container>
-        <Header onSubmit={handleFormSubmit} onChangeValue={onChangeValue} value={value} />
+        <Header />
         <Outlet />
       </Container>
-    </context.Provider>
+    </Provider>
   );
 }

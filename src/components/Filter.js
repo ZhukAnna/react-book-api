@@ -1,8 +1,12 @@
-import React from "react";
-import "./Filter.css";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { sortAction, filterAction } from '../store/actions.js';
+import './Filter.css';
 
 export default function Filter(props) {
-  const { category, sorting, onChangeCategory, onChangeSorting } = props;
+  const { category, sorting } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
 
   return (
     <div className="filter">
@@ -15,7 +19,7 @@ export default function Filter(props) {
           aria-label="category"
           id="category"
           value={category}
-          onChange={(e) => onChangeCategory(e)}
+          onChange={(e) => dispatch(filterAction(e.target.value))}
         >
           <option value="all">all</option>
           <option value="art">art</option>
@@ -36,7 +40,7 @@ export default function Filter(props) {
           aria-label="sort"
           id="sort"
           value={sorting}
-          onChange={(e) => onChangeSorting(e)}
+          onChange={(e) => dispatch(sortAction(e.target.value))}
         >
           <option value="relevance">relevance</option>
           <option value="newest">newest</option>

@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { fetchAction } from '../store/actions.js';
 
 const useFetch = (url) => {
-  const [data, setData] = useState(null);
+  const dispatch = useDispatch();
+
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -14,19 +17,19 @@ const useFetch = (url) => {
         }
         return res.json();
       })
-      .then((newData) => {
-        setData(data ? {...data, items: data.items?.concat(newData.items)} : newData);
+      .then((data) => {
+        dispatch(fetchAction(data));
         setLoading(false);
         setError(null);
       })
       .catch((err) => {
         setError(err.message);
-        
+
         setLoading(false);
       });
   }, [url]);
-//console.log(data);
-  return { data, loading, error };
+  console.log('fetch');
+  return { loading, error };
 };
 
 export default useFetch;
