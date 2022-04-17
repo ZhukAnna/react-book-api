@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { searchAction } from '../store/actions.js';
 import './Header.css';
 
 export default function Header(props) {
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="header">
@@ -17,6 +19,7 @@ export default function Header(props) {
         onSubmit={async (event) => {
           event.preventDefault();
           dispatch(searchAction(value));
+          navigate('/');
         }}
       >
         <input
