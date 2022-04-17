@@ -28,7 +28,6 @@ const useFetch = (url) => {
         setLoading(false);
       });
   }, [url]);
-  console.log('fetch');
   return { loading, error };
 };
 
