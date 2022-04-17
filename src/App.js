@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { Routes, Route, Outlet, useNavigate } from 'react-router-dom';
-import Container from 'react-bootstrap/Container';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
-import Header from './components/Header.js';
+import Layout from './Layout.js';
 import Home from './pages/home.js';
 import Book from './pages/book.js';
-import context from './Context.js';
 
 export default function App() {
   return (
@@ -15,28 +13,5 @@ export default function App() {
         <Route path={`book/:id`} element={<Book />} />
       </Route>
     </Routes>
-  );
-}
-
-function Layout() {
-  const navigate = useNavigate();
-  const [search, setSearch] = useState('react');
-  const [value, setValue] = useState('');
-
-  const onChangeValue = (e) => setValue(e.target.value);
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    setSearch(value);
-    navigate('/');
-  };
-
-  return (
-    <context.Provider value={search}>
-      <Container>
-        <Header onSubmit={handleFormSubmit} onChangeValue={onChangeValue} value={value} />
-        <Outlet />
-      </Container>
-    </context.Provider>
   );
 }
