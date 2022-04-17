@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { searchAction } from '../store/actions.js';
 import './Header.css';
 
@@ -12,7 +12,9 @@ export default function Header(props) {
   return (
     <div className="header">
       <div className="header_logo-wrapper">
-        <h1 className="header_title">Books API App</h1>
+        <h1 className="header_title">
+          <Link className="header_logo" to={'/'}>Books API App</Link>
+        </h1>
       </div>
       <form
         className="header_search"
