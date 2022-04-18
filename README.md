@@ -1,8 +1,15 @@
 # Book search app on React with Google Books API
 
-[Live demo](https://zhukanna.github.io/react-book-api/).
+You can see the [Live demo](https://zhukanna.github.io/react-book-api/).
 
-## Screenshots
+### Technologies
+
+* React (Functional components, Hooks, React Router)
+* Redux, React-redux
+* CSS, bootstrap
+* Google Books API
+
+### Screenshots
 
 ![image](https://user-images.githubusercontent.com/7803506/163729879-c2701f0e-88f5-47ff-8998-fe5fe92e566b.png)
 
@@ -11,11 +18,11 @@
 
 ### Functionality
 
-* Must have a text box and a search button. The substring entered by the user is used to search for books. The search trigger is either pressing Enter (when the text field has focus) or pressing the search button.
-* Filter by category. Below the text field is a select with categories: all, art, biography, computers, history, medical, poetry. If "all" (selected initially) is selected, then the search is performed in all categories.
-* Sorting. Next to the category select is a select with sorting options: relevance (selected initially), newest.
-* Found books are displayed as cards, each of which consists of a book cover image, book title, category name, and author names. If more than one category comes for a book, only the first one is displayed. All authors are displayed. If any part of the data does not arrive, then just an empty space instead.
-* Above the block with cards, the number of books found by request is displayed.
+* Search field. The search trigger is either pressing Enter (when the text field has focus) or pressing the search button.
+* Filter by category. Select with categories: all, art, biography, computers, history, medical, poetry. If "all" (selected initially) is selected, the search is performed in all categories.
+* Sorting. Select with sorting options: relevance (selected initially), newest.
+* Cards of books, each consists of a book cover image, book title, category name, and author names. If more than one category comes for a book, only the first one is displayed. All authors are displayed. 
+* Above the block with cards, the number of books found is displayed.
 * Pagination is implemented according to the 'load more' principle. Below the block with cards is the 'Load more' button, by clicking on it, more books are loaded to the already loaded books. Pagination step - 30.
 * When you click on a card, you go to the detailed page of the book, which displays its data: cover image, title, all categories, all authors, description.
 
