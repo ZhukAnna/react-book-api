@@ -25,12 +25,18 @@ export default function myReducer(state = initialState, action) {
         ...state,
         search: action.payload,
         books: [],
+        category: 'all',
+        startId: 0,
+        filteredData: null,
       };
     case SORT:
       return {
         ...state,
         sorting: action.payload,
         books: [],
+        category: 'all',
+        startId: 0,
+        filteredData: null,
       };
     case LOAD_MORE:
       return {
